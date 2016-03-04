@@ -47,14 +47,17 @@
 		drawWorld();
 
 		$(document).on("keydown", "html", function(e){
+			//
 			console.log("FIRES OFF!", e);
 			if (e.keyCode === 37){ // Left
+				console.log(map[y][x]);
 				map[pacMan.y][pacMan.x] = 2;
 				pacMan.x = pacMan.x -1; 
 				map[pacMan.y][pacMan.x] = 3;
 				drawWorld();
 				$("img.pacman").css("transform","rotate(180deg)")
-
+				
+			
 			} else if (e.keyCode === 39){ // Right
 				map[pacMan.y][pacMan.x] = 2;
 				pacMan.x = pacMan.x +1; 
