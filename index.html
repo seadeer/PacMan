@@ -8,13 +8,14 @@
 <body>
 	<div id="score">
 		<h1>SCORE:</h1>
-		<h1 id="score">0</h1>
+		<h1 id="scoreVal">0</h1>
 	</div>
 	<div id="world">
 		
 	</div>
 	<script type="text/javascript">
 		var pacMan = { x: 4, y:4 };
+		var coins = 1;
 		var map = 	[
 						[0,0,0,0,0,0,0,0,0,0],
 						[0,1,1,0,1,1,1,1,1,0],
@@ -27,7 +28,11 @@
 						[0,1,1,1,1,1,1,1,1,0],
 						[0,0,0,0,0,0,0,0,0,0]
 					];
-		
+		function updateCoins(){
+			coins++;
+			$("#scoreVal").text(coins);
+		}
+
 		function drawWorld(){
 			$("#world").html("");
 			for(var y = 0; y < map.length; y++){
@@ -47,10 +52,8 @@
 			}
 		}
 		drawWorld();
-
 		$(document).on("keydown", "html", function(e){
-			var coins = 0;
-			console.log(coins);
+			console.log("coins ="+" "+coins);
 			if (e.keyCode === 37){ // Left
 				if(map[pacMan.y][pacMan.x-1] !== 0){
 					console.log(map[pacMan.y][pacMan.x-1]);
@@ -60,7 +63,9 @@
 					drawWorld();
 					$("img.pacman").css("transform","rotate(180deg)")
 					if(map[pacMan.y][pacMan.x-1] === 1){
-						coins++;
+						updateCoins();
+						console.log("left added coins ="+" "+coins);
+
 					}
 				}
 				
@@ -73,19 +78,20 @@
 					map[pacMan.y][pacMan.x] = 3;
 					drawWorld();
 					if(map[pacMan.y][pacMan.x+1] === 1){
-						coins++;
+						updateCoins();
+						console.log("right added coins ="+" "+coins);
 					}
 				}
 			} else if (e.keyCode === 38){ //Up
 				if(map[pacMan.y-1][pacMan.x] !== 0){
-					console.log(map[pacMan.y+1][pacMan.x]);
+					
 					map[pacMan.y][pacMan.x] = 2;
 					pacMan.y = pacMan.y -1;
 					map[pacMan.y][pacMan.x] = 3;
 					drawWorld();
 					$("img.pacman").css("transform","rotate(270deg)")
 					if(map[pacMan.y-1][pacMan.x] === 1){
-						coins++;
+						updateCoins();
 					}
 				}
 			} else if (e.keyCode === 40){ //Down
@@ -96,7 +102,7 @@
 					drawWorld();
 					$("img.pacman").css("transform","rotate(90deg)")
 					if(map[pacMan.y+1][pacMan.x] === 1){
-						coins++;
+						updateCoins();
 					}
 				}
 			}
