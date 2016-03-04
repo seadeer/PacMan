@@ -9,6 +9,9 @@
 	<div id="score">
 		<h1>SCORE:</h1>
 		<h1 id="scoreVal">0</h1>
+		<h1>LEVEL:</h1>
+		<h1 id="level">1</h1>
+
 	</div>
 	<div id="world">
 		
@@ -40,8 +43,8 @@
 						}
 					}
 				}
-			console.log(total);
-			if(total === coins){
+			console.log('Total coins: ' + total);
+			if(total === 0){
 			return true;}
 		}
 
@@ -103,8 +106,7 @@
 			
 		})
 		$(document).on("keydown", "html", function(e){
-			var coins = 0;
-			console.log(coins);
+			console.log("coins ="+" "+coins);
 			if (e.keyCode === 37){ // Left
 				if(map[pacMan.y][pacMan.x-1] !== 0){
 					console.log(map[pacMan.y][pacMan.x-1]);
@@ -155,10 +157,6 @@
 					// }
 				}
 			}
-
-			
-
-			//Update level if all the coins have been collected
 			if(checkCoins()){
 				levelUpdate()};
 		})
@@ -182,6 +180,7 @@
 					];
 			drawWorld();
 			level++;
+			$('#level').text(level);
 		}
 	</script>
 </body>
