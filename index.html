@@ -9,12 +9,16 @@
 	<div id="score">
 		<h1>SCORE:</h1>
 		<h1 id="score">0</h1>
+		<h1>LEVEL:</h1>
+		<h1 id="level">1</h1>
+
 	</div>
 	<div id="world">
 		
 	</div>
 	<script type="text/javascript">
 		var pacMan = { x: 4, y:4 };
+		var level = 1;
 		var coins = 0;
 		var map = 	[
 						[0,0,0,0,0,0,0,0,0,0],
@@ -113,10 +117,11 @@
 					$("img.pacman").css("transform","rotate(90deg)")
 					if(map[pacMan.y+1][pacMan.x] === 1){
 						coins++;
-
 					}
 				}
 			}
+
+			
 
 			//Update level if all the coins have been collected
 			if(checkCoins()){
@@ -141,6 +146,7 @@
 						[0,0,0,0,0,0,0,0,0,0]
 					];
 			drawWorld();
+			level++;
 		}
 	</script>
 </body>
