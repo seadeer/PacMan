@@ -45,34 +45,56 @@
 		drawWorld();
 
 		$(document).on("keydown", "html", function(e){
-			//
-			console.log("FIRES OFF!", e);
+			var coins = 0;
+			console.log(coins);
 			if (e.keyCode === 37){ // Left
-				console.log(map[y][x]);
-				map[pacMan.y][pacMan.x] = 2;
-				pacMan.x = pacMan.x -1; 
-				map[pacMan.y][pacMan.x] = 3;
-				drawWorld();
-				$("img.pacman").css("transform","rotate(180deg)")
+				if(map[pacMan.y][pacMan.x-1] !== 0){
+					console.log(map[pacMan.y][pacMan.x-1]);
+					map[pacMan.y][pacMan.x] = 2;
+					pacMan.x = pacMan.x -1; 
+					map[pacMan.y][pacMan.x] = 3;
+					drawWorld();
+					$("img.pacman").css("transform","rotate(180deg)")
+					if(map[pacMan.y][pacMan.x-1] === 1){
+						coins++;
+					}
+				}
+				
 				
 			
 			} else if (e.keyCode === 39){ // Right
-				map[pacMan.y][pacMan.x] = 2;
-				pacMan.x = pacMan.x +1; 
-				map[pacMan.y][pacMan.x] = 3;
-				drawWorld();
+				if(map[pacMan.y][pacMan.x+1] !== 0){
+					map[pacMan.y][pacMan.x] = 2;
+					pacMan.x = pacMan.x +1; 
+					map[pacMan.y][pacMan.x] = 3;
+					drawWorld();
+					if(map[pacMan.y][pacMan.x+1] === 1){
+						coins++;
+					}
+				}
 			} else if (e.keyCode === 38){ //Up
-				map[pacMan.y][pacMan.x] = 2;
-				pacMan.y = pacMan.y -1;
-				map[pacMan.y][pacMan.x] = 3;
-				drawWorld();
-				$("img.pacman").css("transform","rotate(270deg)")
+				if(map[pacMan.y-1][pacMan.x] !== 0){
+					console.log(map[pacMan.y+1][pacMan.x]);
+					map[pacMan.y][pacMan.x] = 2;
+					pacMan.y = pacMan.y -1;
+					map[pacMan.y][pacMan.x] = 3;
+					drawWorld();
+					$("img.pacman").css("transform","rotate(270deg)")
+					if(map[pacMan.y-1][pacMan.x] === 1){
+						coins++;
+					}
+				}
 			} else if (e.keyCode === 40){ //Down
-				map[pacMan.y][pacMan.x] = 2;
-				pacMan.y = pacMan.y +1;
-				map[pacMan.y][pacMan.x] = 3;
-				drawWorld();
-				$("img.pacman").css("transform","rotate(90deg)")
+					if(map[pacMan.y+1][pacMan.x] !== 0){
+					map[pacMan.y][pacMan.x] = 2;
+					pacMan.y = pacMan.y +1;
+					map[pacMan.y][pacMan.x] = 3;
+					drawWorld();
+					$("img.pacman").css("transform","rotate(90deg)")
+					if(map[pacMan.y+1][pacMan.x] === 1){
+						coins++;
+					}
+				}
 			}
 
 		})
