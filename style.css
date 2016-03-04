@@ -6,6 +6,12 @@ html {
 	width: 100%;
 }
 
+#container{
+	width: 550px;
+	min-height: 100px;
+	margin: 0 auto;
+}
+
 div#score {
 	width: 550px;
 	height: 50px;
